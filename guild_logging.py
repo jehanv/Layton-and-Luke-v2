@@ -88,6 +88,7 @@ class Logging(Extension):
             value=event.member.created_at.format(TimestampStyles.RelativeTime),
         )
         emb.set_thumbnail(event.member.display_avatar.url)
+        await self.bot.fetch_channel(863553901781712896).send(event.member.mention() + " is exploring the Ruins of Akbadain!")
         await self.send_embed(emb)
 
     @listen()
@@ -102,6 +103,7 @@ class Logging(Extension):
             name="⏰ Left After",
             value=strf_delta(Timestamp.utcnow() - event.member.joined_at),
         )
+        await self.bot.fetch_channel(863553901781712896).send(event.member.mention() + " gave up.")
         await self.send_embed(emb)
 
     @listen()
