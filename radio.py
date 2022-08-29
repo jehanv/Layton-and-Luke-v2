@@ -24,6 +24,7 @@ class Radio(Extension):
 
     async def start_radio(self, channel: GuildVoice):
         await channel.connect(deafened=True)
+        self.play_track()
 
     @slash_command(name="play")
     @slash_option(name="track", description="The track to play.", required=True, opt_type=OptionTypes.STRING, choices=[SlashCommandChoice(name="casino", value="casino"), SlashCommandChoice(name="chase", value="chase"), SlashCommandChoice(name="day", value="day"), SlashCommandChoice(name="illusion", value="illusion"), SlashCommandChoice(name="intro", value="intro"), SlashCommandChoice(name="layton", value="layton"), SlashCommandChoice(name="masked", value="masked"), SlashCommandChoice(name="night", value="night"), SlashCommandChoice(name="puzzle", value="puzzle")])

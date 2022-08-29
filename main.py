@@ -1,4 +1,10 @@
+import naff
 from naff import ( Client, Intents)
+import logging
+
+logging.basicConfig()
+cls_log = logging.getLogger(naff.const.logger_name)
+cls_log.setLevel(logging.DEBUG)
 
 intents = Intents.ALL
 
