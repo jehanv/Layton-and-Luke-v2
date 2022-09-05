@@ -1,5 +1,7 @@
+#!/usr/local/bin/python3.10
+
 import naff
-from naff import ( Client, Intents)
+from naff import Client, Intents
 import logging
 
 logging.basicConfig()
