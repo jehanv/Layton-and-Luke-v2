@@ -20,10 +20,10 @@ class Radio(Extension):
     async def play_track(self):
         while True:
             audio = AudioVolume("tracks/"+next_song+".mp4")
-            if self.bot.get_bot_voice_state(860674527833620480) is not None:
-                await self.bot.get_bot_voice_state(860674527833620480).play(audio)
-            else:
+            if self.bot.get_bot_voice_state(860674527833620480) is None:
+                await self.bot.get_bot_voice_state(860674527833620480).stop()
                 await self.start_radio(self.bot.get_channel(1011798163457327156))
+            await self.bot.get_bot_voice_state(860674527833620480).play(audio)
 
     async def start_radio(self, channel: GuildVoice):
         await channel.connect(deafened=True)
