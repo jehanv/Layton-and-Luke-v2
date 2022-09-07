@@ -1,3 +1,4 @@
+from lib2to3.pgen2.token import SLASH
 from naff import (
     Extension,
     listen,
@@ -7,6 +8,7 @@ from naff import (
     TimestampStyles,
     Role,
     Timestamp,
+    slash_command
 )
 from naff.api.events import (
     MemberUpdate,
@@ -30,7 +32,7 @@ class Logging(Extension):
         return embed
 
     async def send_embed(self, embed: Embed) -> Message:
-        channel = await self.bot.fetch_channel(863554661428494347)
+        channel = await self.bot.get_channel(863554661428494347)
         return await channel.send(embeds=embed)
 
     @listen()
@@ -88,7 +90,7 @@ class Logging(Extension):
             value=event.member.created_at.format(TimestampStyles.RelativeTime),
         )
         emb.set_thumbnail(event.member.display_avatar.url)
-        await self.bot.fetch_channel(863553901781712896).send(event.member.mention() + " is exploring the Ruins of Akbadain!")
+        await self.bot.get_channel(863553901781712896).send(event.member.mention + " is exploring the Ruins of Akbadain!")
         await self.send_embed(emb)
 
     @listen()
@@ -103,7 +105,7 @@ class Logging(Extension):
             name="⏰ Left After",
             value=strf_delta(Timestamp.utcnow() - event.member.joined_at),
         )
-        await self.bot.fetch_channel(863553901781712896).send(event.member.mention() + " gave up.")
+        await self.bot.fetch_channel(863553901781712896).send(event.member.mention + " gave up.")
         await self.send_embed(emb)
 
     @listen()
@@ -137,9 +139,6 @@ class Logging(Extension):
 
     @listen()
     async def on_message_delete(self, event: MessageDelete):
-        print(event.message)
-        print(event.message.author)
-        print(event.message.author)
         emb = self.base_embed(event)
         emb.color = BrandColors.RED
         emb.set_author(
@@ -159,7 +158,6 @@ class Logging(Extension):
             emb.add_field(name="# Attachments", value=str(count))
 
         await self.send_embed(emb)
-
 
 def setup(bot):
     Logging(bot)
