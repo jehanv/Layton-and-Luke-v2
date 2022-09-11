@@ -22,7 +22,6 @@ from naff.ext.debug_extension import strf_delta
 
 
 class Logging(Extension):
-    ...
 
     @staticmethod
     def base_embed(event: BaseEvent) -> Embed:

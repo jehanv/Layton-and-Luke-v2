@@ -16,7 +16,7 @@ class Radio(Extension):
     @listen()
     async def on_ready(self):
         if self.bot.get_bot_voice_state(860674527833620480) is not None:
-            self.bot.get_bot_voice_state(860674527833620480).disconnect()
+            await self.bot.get_bot_voice_state(860674527833620480).disconnect()
         return await self.start_radio(self.bot.get_channel(1011798163457327156))
     
     async def play_track(self):
