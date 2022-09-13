@@ -104,7 +104,7 @@ class Logging(Extension):
             name="⏰ Left After",
             value=strf_delta(Timestamp.utcnow() - event.member.joined_at),
         )
-        await self.bot.fetch_channel(863553901781712896).send(event.member.mention + " gave up.")
+        await self.bot.get_channel(863553901781712896).send(event.member.mention + " gave up.")
         await self.send_embed(emb)
 
     @listen()
@@ -142,7 +142,7 @@ class Logging(Extension):
         emb.color = BrandColors.RED
         emb.set_author(
             name=event.message.author.tag,
-            icon_url=event.message.author.avatar.url,
+            icon_url=event.message.author.display_avatar.url,
         )
 
         content = event.message.content or "[Empty]"
