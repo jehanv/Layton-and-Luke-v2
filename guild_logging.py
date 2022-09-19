@@ -142,7 +142,7 @@ class Logging(Extension):
         emb.color = BrandColors.RED
         emb.set_author(
             name=event.message.author.tag,
-            icon_url=event.message.author.display_avatar.url,
+            icon_url=event.message.author.display_avatar.url(),
         )
 
         content = event.message.content or "[Empty]"
