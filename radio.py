@@ -23,7 +23,7 @@ class Radio(Extension):
         return await self.start_radio(self.bot.get_channel(1011798163457327156))
     
     async def play_track(self):
-        while True:
+        while self.bot.get_bot_voice_state(860674527833620480):
             audio = AudioVolume("tracks/"+next_song+".mp4")
             await self.bot.get_bot_voice_state(860674527833620480).play(audio)
 
