@@ -20,7 +20,7 @@ class Radio(Extension):
         if self.bot.get_bot_voice_state(860674527833620480):
             await self.bot.get_bot_voice_state(860674527833620480).disconnect()
             print("Disconnected from voice channel")
-        return await self.play_track(self.bot.get_channel(1011798163457327156))
+        return await self.play_track()
     
     async def play_track(self):
         while self.bot.get_bot_voice_state(860674527833620480):
