@@ -30,7 +30,8 @@ class Radio(Extension):
         await self.start_radio(self.bot.get_channel(1011798163457327156))
 
     async def start_radio(self, channel: GuildVoice):
-        await self.bot.get_bot_voice_state(860674527833620480).disconnect()
+        if self.bot.get_bot_voice_state(860674527833620480):
+            await self.bot.get_bot_voice_state(860674527833620480).disconnect()
         await channel.connect(deafened=True)
         print("Connected to voice channel")
         await self.play_track()
