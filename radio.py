@@ -20,12 +20,13 @@ class Radio(Extension):
         if self.bot.get_bot_voice_state(860674527833620480):
             await self.bot.get_bot_voice_state(860674527833620480).disconnect()
             print("Disconnected from voice channel")
-        return await self.start_radio(self.bot.get_channel(1011798163457327156))
+        return await self.play_track(self.bot.get_channel(1011798163457327156))
     
     async def play_track(self):
         while self.bot.get_bot_voice_state(860674527833620480):
             audio = AudioVolume("tracks/"+next_song+".mp4")
             await self.bot.get_bot_voice_state(860674527833620480).play(audio)
+        await self.bot.wait_until_ready()
         await self.start_radio(self.bot.get_channel(1011798163457327156))
 
     async def start_radio(self, channel: GuildVoice):
